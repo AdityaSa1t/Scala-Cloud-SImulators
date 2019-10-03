@@ -1,6 +1,5 @@
-# Homework 01 Aditya Sawant
-### Description: create cloud simulators for evaluating executions of applications in cloud datacenters with different characteristics and deployment models.
-### Grade: 7% + bonus up to 3%
+# CS 441 - Homework 01 - Aditya Sawant
+### Description: Create cloud simulators for evaluating executions of applications in cloud datacenters with different characteristics and deployment models.
 #### You can obtain this Git repo using the command git clone git clone https://bitbucket.org/cs441_fall2019/homework1.git. You can clone Cloud2Sim or ingest it directly into IntelliJ from https://git.code.sf.net/p/cloud2sim/code.
 
 ## Preliminaries
