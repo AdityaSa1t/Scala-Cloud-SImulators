@@ -161,7 +161,7 @@ object SchemeOne {
         Log.printLine(indent + indent + cloudlet.getResourceId + indent + indent + indent + cloudlet.getVmId + indent + indent + dft.format(cloudlet.getActualCPUTime) + indent + indent + dft.format(cloudlet.getExecStartTime) + indent + indent + cloudlet.getAccumulatedBwCost + indent + indent + indent + cloudlet.getProcessingCost)
 
         /*Below lines are used to get data for individual attributes.*/
-        //Log.printLine(dft.format(cloudlet.getActualCPUTime()));
+        //Log.printLine(dft.format(cloudlet.getCloudletId()));
         //Log.printLine(dft.format(cloudlet.getExecStartTime()));
         //Log.printLine(dft.format(cloudlet.getFinishTime()));
       }

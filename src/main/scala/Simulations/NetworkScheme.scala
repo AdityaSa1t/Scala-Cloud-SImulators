@@ -120,15 +120,15 @@ object NetworkScheme {
       i < size
     }) {
       cloudlet = list.get(i)
-      Log.print(indent + cloudlet.getCloudletId + indent + indent)
+      //Log.print(indent + cloudlet.getCloudletId + indent + indent)
       if (cloudlet.getCloudletStatus == Cloudlet.SUCCESS) {
-        Log.print("SUCCESS")
-        Log.printLine(indent + indent + cloudlet.getResourceId + indent + indent + indent + cloudlet.getVmId + indent + indent + dft.format(cloudlet.getActualCPUTime) + indent + indent + dft.format(cloudlet.getExecStartTime) + indent + indent + cloudlet.getAccumulatedBwCost + indent + indent + indent + cloudlet.getProcessingCost)
+        //Log.print("SUCCESS")
+        //Log.printLine(indent + indent + cloudlet.getResourceId + indent + indent + indent + cloudlet.getVmId + indent + indent + dft.format(cloudlet.getActualCPUTime) + indent + indent + dft.format(cloudlet.getExecStartTime) + indent + indent + cloudlet.getAccumulatedBwCost + indent + indent + indent + cloudlet.getProcessingCost)
 
         /*Below lines are used to get data for individual attributes.*/
         //Log.printLine(dft.format(cloudlet.getActualCPUTime()));
         //Log.printLine(dft.format(cloudlet.getExecStartTime()));
-        //Log.printLine(dft.format(cloudlet.getFinishTime()));
+        Log.printLine(dft.format(cloudlet.getFinishTime()));
       }
       {
         i += 1; i - 1

@@ -88,7 +88,7 @@ object MultiSchemeTwo {
     while ( {
       j <= dataCenterConfig.getInt("ReducerCloudlet.count")
     }) {
-      broker2.bindCloudletToVm(createReducers(broker2.getId).get(i).getCloudletId, vmUtilReduce.getVmList.get(0).getId)
+      broker2.bindCloudletToVm(createReducers(broker2.getId).get(j).getCloudletId, vmUtilReduce.getVmList.get(0).getId)
 
       {
         j += 1; i - 1
@@ -107,7 +107,7 @@ object MultiSchemeTwo {
     var cloudlet: Cloudlet = null
     val indent: String = "    "
     Log.printLine()
-    Log.printLine("========== OUTPUT ==========")
+    Log.printLine("========== OUTPUT MULTI SCHEME TWO ==========")
     Log.printLine("Cloudlet ID" + indent + "STATUS" + indent + "Data center ID" + indent + "VM ID" + indent + "Time" + indent + "Start Time" + indent + "Bandwidth Cost" + indent + "Processing Cost")
     val dft: DecimalFormat = new DecimalFormat("###.##")
     var i: Int = 0
