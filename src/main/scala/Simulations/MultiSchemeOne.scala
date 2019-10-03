@@ -19,12 +19,13 @@ object MultiSchemeOne {
   //Creating Reducers and output cloudlets
   private def createReducers(brokerId: Int): util.List[Cloudlet] = {
     val cloudletUtilization_1: UtilizationModel = new UtilizationModelFull
-    val output: Cloudlet = new Cloudlet(dataCenterConfig.getInt("MasterCloudlet.index"), dataCenterConfig.getLong("MasterCloudlet.length"), dataCenterConfig.getInt("MasterCloudlet.pescount"), dataCenterConfig.getLong("MasterCloudlet.fileSize"), dataCenterConfig.getLong("MasterCloudlet.outputSize"), cloudletUtilization_1, cloudletUtilization_1, cloudletUtilization_1)
+    val output: Cloudlet = new Cloudlet(dataCenterConfig.getInt("OutputCloudlet.index"), dataCenterConfig.getLong("OutputCloudlet.length"), dataCenterConfig.getInt("OutputCloudlet.pescount"), dataCenterConfig.getLong("OutputCloudlet.fileSize"), dataCenterConfig.getLong("OutputCloudlet.outputSize"), cloudletUtilization_1, cloudletUtilization_1, cloudletUtilization_1)
     output.setUserId(brokerId)
     reduce.setReducerConfig(cloudletUtilization_1, cloudletUtilization_1, cloudletUtilization_1, brokerId)
     val reducerJobList: util.List[Cloudlet] = new util.ArrayList[Cloudlet]
     reducerJobList.addAll(reduce.getReducerList)
     reducerJobList.add(output)
+    log.info("Added Reducers and Output.")
     reducerJobList
   }
 
@@ -37,6 +38,7 @@ object MultiSchemeOne {
     val mapperJobList: util.List[Cloudlet] = new util.ArrayList[Cloudlet]
     mapperJobList.add(master)
     mapperJobList.addAll(map.getMapperList)
+    log.info("Added Mappers and Master.")
     mapperJobList
   }
 
@@ -56,6 +58,7 @@ object MultiSchemeOne {
     } catch {
       case e: Exception =>
         e.printStackTrace()
+        log.error("Unable to create brokers.")
     }
     val vmUtilMap: VMUtil = new VMUtil
     vmUtilMap.setHalfVmList(new CloudletSchedulerSpaceShared, broker1.getId) //space-shared cloudlet allocation

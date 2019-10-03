@@ -2,24 +2,27 @@ package Simulations
 
 import java.text.DecimalFormat
 import java.util
-import java.util.{ArrayList, Calendar, List}
+import java.util.Calendar
 
 import com.typesafe.config.{Config, ConfigFactory}
-import org.cloudbus.cloudsim.{Cloudlet, CloudletSchedulerSpaceShared, Datacenter, DatacenterBroker, Log, UtilizationModel, UtilizationModelFull, Vm}
 import org.cloudbus.cloudsim.core.CloudSim
+import org.cloudbus.cloudsim.{Cloudlet, CloudletSchedulerSpaceShared, Datacenter, DatacenterBroker, Log, UtilizationModel, UtilizationModelFull}
 import org.slf4j.{Logger, LoggerFactory}
 import simutil.{DataCenterUtil, MapperUtil, ReducerUtil, VMUtil}
+
 
 object SchemeOne {
   private val map: MapperUtil = new MapperUtil
   private val reduce: ReducerUtil = new ReducerUtil
   private val log: Logger = LoggerFactory.getLogger(SchemeOne.getClass)
+
   private val dataCenterConfig: Config = ConfigFactory.load("DataCenter.conf")
 
   private def createCloudlets(brokerId: Int): util.List[Cloudlet] = {
     val cloudletUtilization_1: UtilizationModel = new UtilizationModelFull
 
     //Creating a master cloudlet
+    log.info("Trying to start cloudsim.")
     val master: Cloudlet = new Cloudlet(dataCenterConfig.getInt("MasterCloudlet.index"),
       dataCenterConfig.getLong("MasterCloudlet.length"), dataCenterConfig.getInt("MasterCloudlet.pescount"),
       dataCenterConfig.getLong("MasterCloudlet.fileSize"), dataCenterConfig.getLong("MasterCloudlet.outputSize"),
@@ -29,18 +32,21 @@ object SchemeOne {
 
     //Creating Mappers
     map.setMapperConfig(cloudletUtilization_1, cloudletUtilization_1, cloudletUtilization_1, brokerId)
+    log.debug("Mapper Cloudlets created.")
 
     //creating Reducers
     reduce.setReducerConfig(cloudletUtilization_1, cloudletUtilization_1, cloudletUtilization_1, brokerId)
+    log.debug("Reducer Cloudlets created.")
+
 
     //list to maintain all cloudlets
     val jobList: util.List[Cloudlet] = new util.ArrayList[Cloudlet]
     jobList.add(master)
 
 
-    /*Here we load each reducer after a certain number of mappers have been added,
-    specifically we get the quotient between the number of mappers and reducers and have a Reducer added
-    for each 'quotient number' of mappers.*/
+    /*Here we load each reducer after a certain number of mappers have been added.
+    Here we get the quotient between the number of mappers and reducers and have a Reducer added
+    for each 'quotient' number of mappers.*/
     val factor: Int = dataCenterConfig.getInt("MapperCloudlet.count") / dataCenterConfig.getInt("ReducerCloudlet.count")
     var lowerBound: Int = 0
     var upperBound: Int = factor
@@ -69,7 +75,7 @@ object SchemeOne {
     //Creating Output cloudlet.
     val output: Cloudlet = new Cloudlet(dataCenterConfig.getInt("OutputCloudlet.index"), dataCenterConfig.getLong("OutputCloudlet.length"), dataCenterConfig.getInt("OutputCloudlet.pescount"), dataCenterConfig.getLong("OutputCloudlet.fileSize"), dataCenterConfig.getLong("OutputCloudlet.outputSize"), cloudletUtilization_1, cloudletUtilization_1, cloudletUtilization_1)
     output.setUserId(brokerId)
-    log.debug("Master Cloudlet created.")
+    log.debug("Output Cloudlet created.")
     jobList.add(output)
     jobList
   }

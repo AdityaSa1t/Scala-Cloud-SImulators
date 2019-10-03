@@ -31,7 +31,4 @@ class ConfigTest {
     val bwCompare: Boolean = hostBw>vmBw
     assert(ramCompare && bwCompare)
   }
-
-
-
 }

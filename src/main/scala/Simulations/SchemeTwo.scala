@@ -2,11 +2,11 @@ package Simulations
 
 import java.text.DecimalFormat
 import java.util
-import java.util.{ArrayList, Calendar, List}
+import java.util.Calendar
 
 import com.typesafe.config.{Config, ConfigFactory}
-import org.cloudbus.cloudsim.{Cloudlet, CloudletSchedulerTimeShared, Datacenter, DatacenterBroker, Log, UtilizationModel, UtilizationModelFull, Vm}
 import org.cloudbus.cloudsim.core.CloudSim
+import org.cloudbus.cloudsim.{Cloudlet, CloudletSchedulerTimeShared, Datacenter, DatacenterBroker, Log, UtilizationModel, UtilizationModelFull}
 import org.slf4j.{Logger, LoggerFactory}
 import simutil.{DataCenterUtil, MapperUtil, ReducerUtil, VMUtil}
 
@@ -31,9 +31,11 @@ object SchemeTwo{
 
     //Creating Mappers
     map.setMapperConfig(cloudletUtilization_1, cloudletUtilization_1, cloudletUtilization_1, brokerId)
+    log.debug("Mapper Cloudlets created.")
 
     //Creating Reducers
     reduce.setReducerConfig(cloudletUtilization_1, cloudletUtilization_1, cloudletUtilization_1, brokerId)
+    log.debug("Reducer Cloudlets created.")
 
     //list to maintain all cloudlets
     val jobList: util.List[Cloudlet] = new util.ArrayList[Cloudlet]
@@ -70,6 +72,7 @@ object SchemeTwo{
     //Creating Output cloudlet.
     val output: Cloudlet = new Cloudlet(dataCenterConfig.getInt("OutputCloudlet.index"), dataCenterConfig.getLong("OutputCloudlet.length"), dataCenterConfig.getInt("OutputCloudlet.pescount"), dataCenterConfig.getLong("OutputCloudlet.fileSize"), dataCenterConfig.getLong("OutputCloudlet.outputSize"), cloudletUtilization_1, cloudletUtilization_1, cloudletUtilization_1)
     output.setUserId(brokerId)
+    log.debug("Output Cloudlet created.")
     jobList.add(output)
     jobList
   }
@@ -86,6 +89,7 @@ object SchemeTwo{
     catch {
       case e: Exception =>
         e.printStackTrace()
+        log.error("Unable to create broker.")
     }
     val vmUtil: VMUtil = new VMUtil
     vmUtil.setVmList(new CloudletSchedulerTimeShared, broker.getId) //time-shared cloudlet allocation
