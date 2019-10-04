@@ -18,7 +18,9 @@ Once cloned from the repository, open the terminal or command prompt, cd to the 
 3) ```sbt test```    
 4) ```sbt run```    
 
-**P.S**: A few of the test cases have been written in Scala and the others are written in java. So if you can't see all the executed test cases, then it is likely that they would have executed in parts.
+**P.S**: A few of the test cases have been written in Scala and the others are written in java. So if you can't see all the executed test cases, then it is likely that they would have executed in parts.    
+    
+After ```sbt run``` a prompt comes up with a list of cloud simulation schemes. On entering the required number which matches with the scheme, the simulation will execute.
 
 
 ### Map Reduce Implementation
