@@ -76,8 +76,8 @@ public class AllocationTest {
     public static void main(String[] args) {
         Result result1 = JUnitCore.runClasses(AllocationTest.class);
         for (Failure failure : result1.getFailures()) {
-            System.out.println(failure.toString());//LOG THIS
+            log.warn(failure.toString());
         }
-        System.out.println("SpaceSharedAllocation Result=="+result1.wasSuccessful());
+        log.info(" Result=="+result1.wasSuccessful());
     }
 }
