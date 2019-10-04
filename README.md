@@ -21,8 +21,8 @@ Once cloned from the repository, open the terminal or command prompt, cd to the 
 **P.S**: A few of the test cases have been written in Scala and the others are written in java. So if you can't see all the executed test cases, then it is likely that they would have executed in parts.
 
 
-### For the students who use the main textbook, in the final fifth step
-you will describe your design of the map/reduce implementation of the simulation.
+### Map Reduce Implementation
+All the simulation schemes represent an implementation of map reduce. 
+From scheme one to scheme five, we deal with a single data center with variations in VM scheduling and Cloudlet allocation. 
+In the others, where multiple data centers are used, one data center uses an entirely space shared sheme and the other uses a time shared scheme, of which one implementation also works with a networked data center.
 
-### For the students who use the alternative textbooks, in the final fifth step
-you will create a simulation that shows how broadcast storm is created in the cloud.
