@@ -25,7 +25,7 @@ After ```sbt run``` a prompt comes up with a list of cloud simulation schemes. O
 
 ### Map Reduce Implementation
 All the simulation schemes represent an implementation of map reduce. 
-From scheme one to scheme five, we deal with a single data center with variations in VM scheduling and Cloudlet allocation. 
+From scheme one to scheme five, we deal with a single data center with variations in VM allocation and Cloudlet scheduling. 
 In the others, where multiple data centers are used, one data center uses an entirely space shared sheme and the other uses a time shared scheme. Among the multi data center schemes, one implementation also works with a networked data center.   
   
 From the execution patterns, it's observed that cloudlet scheduling drives the variation in execution patterns. These have been included in the ```/charts``` for each scheme and only shows the pattern for a scaled - down version with lesser number of cloudlets compared to the actual simulation results.
