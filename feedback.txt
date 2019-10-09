@@ -1,0 +1,11 @@
+Hi Aditya,
+
+You have included good amount of simulations adhering to the baseline and the requirements of the homework. 
+
+Simulations configured using config files and your code is nicely commented.
+
+Your grade for hw1 is full 7% + 1.5% bonus = 8.5%
+
+THanks,
+Mohammed Siddiq
+
